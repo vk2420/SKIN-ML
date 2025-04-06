@@ -42,7 +42,7 @@ const SkinAnalysis = () => {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+  const [history, setHistory] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
