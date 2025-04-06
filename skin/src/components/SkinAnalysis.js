@@ -12,21 +12,13 @@ import {
   LinearProgress,
   Card,
   CardContent,
-  CardMedia,
+ 
   Tabs,
   Tab,
   List,
   ListItem,
   ListItemText,
   ListItemIcon,
-
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Stepper,
-  Step,
-  StepLabel,
-  StepContent,
   Alert,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
