@@ -45,19 +45,9 @@ const SkinAnalysis = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    fetchHistory();
+    // Removed fetchHistory function call
+    // fetchHistory();
   }, []);
-
-  const fetchHistory = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5003/api/skin/history', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-    } catch (error) {
-      console.error('Error fetching history:', error);
-    }
-  };
 
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
@@ -339,10 +329,6 @@ const SkinAnalysis = () => {
     );
   };
 
-  const renderHistory = () => {
-    // If you don't need history, you can remove this function
-  };
-
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f5' }}>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
@@ -482,8 +468,6 @@ const SkinAnalysis = () => {
               {renderProductRecommendations()}
             </>
           )}
-
-          {renderHistory()}
         </Container>
       </Container>
     </Box>
