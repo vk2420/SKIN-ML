@@ -15,13 +15,11 @@ import {
   CardMedia,
   Tabs,
   Tab,
-  Divider,
   List,
   ListItem,
   ListItemText,
   ListItemIcon,
-  Chip,
-  Rating,
+
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -33,12 +31,10 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+
 import SpaIcon from '@mui/icons-material/Spa';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import StarIcon from '@mui/icons-material/Star';
+
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NightlightIcon from '@mui/icons-material/Nightlight';
@@ -271,7 +267,6 @@ const SkinAnalysis = () => {
     // Determine gender based on user profile or default to 'female'
     const gender = 'female'; // You can make this dynamic based on user profile
     const skinType = analysis.skinType.toLowerCase();
-    const timeOfDay = 'fullDay'; // Default to full day recommendations
 
     // Get recommendations from skincareData
     const genderData = skincareData[gender];
@@ -351,150 +346,6 @@ const SkinAnalysis = () => {
           ))}
         </CardContent>
       </Card>
-    );
-  };
-
-  const renderSkinCareRoutine = () => {
-    if (!analysis || !analysis.routine) return null;
-
-    return (
-      <Card sx={{ mt: 3, p: 2 }}>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>
-            Personalized Skin Care Routine
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Follow this routine daily to improve your skin health:
-          </Typography>
-
-          <Accordion defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <WbSunnyIcon sx={{ mr: 1 }} />
-                <Typography variant="h6">Morning Routine</Typography>
-              </Box>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Stepper orientation="vertical">
-                {analysis.routine.morning.map((step) => (
-                  <Step key={step.step} active={true}>
-                    <StepLabel>
-                      <Typography variant="subtitle1">{step.name}</Typography>
-                    </StepLabel>
-                    <StepContent>
-                      <Typography variant="body2" paragraph>
-                        {step.description}
-                      </Typography>
-                      {step.products && step.products.length > 0 && (
-                        <Box sx={{ mb: 2 }}>
-                          <Typography variant="subtitle2" gutterBottom>
-                            Recommended Products:
-                          </Typography>
-                          <List dense>
-                            {step.products.map((product) => (
-                              <ListItem key={product.id}>
-                                <ListItemIcon>
-                                  <ShoppingCartIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText 
-                                  primary={product.name} 
-                                  secondary={`${product.brand} - $${product.price.toFixed(2)}`} 
-                                />
-                              </ListItem>
-                            ))}
-                          </List>
-                        </Box>
-                      )}
-                    </StepContent>
-                  </Step>
-                ))}
-              </Stepper>
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <NightlightIcon sx={{ mr: 1 }} />
-                <Typography variant="h6">Evening Routine</Typography>
-              </Box>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Stepper orientation="vertical">
-                {analysis.routine.evening.map((step) => (
-                  <Step key={step.step} active={true}>
-                    <StepLabel>
-                      <Typography variant="subtitle1">{step.name}</Typography>
-                    </StepLabel>
-                    <StepContent>
-                      <Typography variant="body2" paragraph>
-                        {step.description}
-                      </Typography>
-                      {step.products && step.products.length > 0 && (
-                        <Box sx={{ mb: 2 }}>
-                          <Typography variant="subtitle2" gutterBottom>
-                            Recommended Products:
-                          </Typography>
-                          <List dense>
-                            {step.products.map((product) => (
-                              <ListItem key={product.id}>
-                                <ListItemIcon>
-                                  <ShoppingCartIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText 
-                                  primary={product.name} 
-                                  secondary={`${product.brand} - $${product.price.toFixed(2)}`} 
-                                />
-                              </ListItem>
-                            ))}
-                          </List>
-                        </Box>
-                      )}
-                    </StepContent>
-                  </Step>
-                ))}
-              </Stepper>
-            </AccordionDetails>
-          </Accordion>
-        </CardContent>
-      </Card>
-    );
-  };
-
-  const renderHistory = () => {
-    if (history.length === 0) return null;
-
-    return (
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Analysis History
-        </Typography>
-        <Grid container spacing={2}>
-          {history.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={item.imageUrl}
-                  alt={`Skin analysis ${index + 1}`}
-                />
-                <CardContent>
-                  <Typography variant="h6">
-                    {new Date(item.date).toLocaleDateString()}
-                  </Typography>
-                  <Typography variant="body1">
-                    Skin Type: {item.skinType}
-                  </Typography>
-                  <Typography variant="body2">
-                    Confidence: {(item.confidence * 100).toFixed(1)}%
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
     );
   };
 
@@ -637,36 +488,6 @@ const SkinAnalysis = () => {
               {renderProductRecommendations()}
             </>
           )}
-
-          {/* History Section */}
-          <Box sx={{ mt: 6 }}>
-            <Typography variant="h4" gutterBottom>
-              Analysis History
-            </Typography>
-            <Grid container spacing={3}>
-              {history.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      height="200"
-                      image={item.imageUrl}
-                      alt={`Skin analysis ${index + 1}`}
-                    />
-                    <CardContent>
-                      <Typography variant="h6">Skin Type: {item.skinType}</Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Date: {new Date(item.date).toLocaleDateString()}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Health Score: {item.healthScore}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
         </Container>
       </Container>
     </Box>
