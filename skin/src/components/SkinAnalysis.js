@@ -43,6 +43,7 @@ const SkinAnalysis = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     fetchHistory();
@@ -340,6 +341,21 @@ const SkinAnalysis = () => {
     );
   };
 
+  const renderHistory = () => {
+    if (history.length === 0) return <Typography>No history available.</Typography>;
+
+    return (
+      <div>
+        <h3>Analysis History</h3>
+        <ul>
+          {history.map((item, index) => (
+            <li key={index}>{item}</li> // Adjust based on your history data structure
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f5' }}>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
@@ -479,6 +495,8 @@ const SkinAnalysis = () => {
               {renderProductRecommendations()}
             </>
           )}
+
+          {renderHistory()}
         </Container>
       </Container>
     </Box>
