@@ -43,7 +43,6 @@ const SkinAnalysis = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     fetchHistory();
@@ -55,7 +54,6 @@ const SkinAnalysis = () => {
       const response = await axios.get('http://localhost:5003/api/skin/history', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setHistory(response.data);
     } catch (error) {
       console.error('Error fetching history:', error);
     }
@@ -342,18 +340,7 @@ const SkinAnalysis = () => {
   };
 
   const renderHistory = () => {
-    if (history.length === 0) return <Typography>No history available.</Typography>;
-
-    return (
-      <div>
-        <h3>Analysis History</h3>
-        <ul>
-          {history.map((item, index) => (
-            <li key={index}>{item}</li> // Adjust based on your history data structure
-          ))}
-        </ul>
-      </div>
-    );
+    // If you don't need history, you can remove this function
   };
 
   return (
