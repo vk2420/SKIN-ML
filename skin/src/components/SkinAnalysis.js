@@ -22,7 +22,7 @@ import {
   Alert,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 import SpaIcon from '@mui/icons-material/Spa';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -42,7 +42,7 @@ const SkinAnalysis = () => {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [history, setHistory] = useState([]);
+  
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
